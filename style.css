@@ -1,0 +1,148 @@
+* styles.css */ body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(to right, blue, purple);
+  color: #e8e7ea;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.style-list {
+  font-size: 38px;
+}
+
+.text-apresentacao {
+  font-size: 30px;
+}
+
+.section {
+  padding: 2rem;
+  text-align: center;
+
+}
+
+#sobre {
+  background: #f4f4f4;
+}
+
+
+
+.projetos-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.projeto {
+  background: #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+  max-width: 300px;
+  text-align: left;
+}
+
+.projeto h3 {
+  margin-top: 0;
+  font-size: 52px;
+  background: linear-gradient(to right, rgb(103, 103, 160), rgb(163, 79, 163));
+  color: whitesmoke;
+
+}
+
+
+footer {
+  text-align: center;
+  background: #333;
+  color: #fff;
+  padding: 1rem 0;
+  margin-top: 20px;
+}
+
+.copy {
+  background: linear-gradient(to right, purple, blue);
+}
+
+.container-profile {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: rgba(239, 235, 235, 0.893);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body > div > img {
+  width: 30%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+/* Slider */
+
+/* Estilo para mobile */
+/* @media (max-width: 767px) { */
+.projetos-slider {
+  display: flex;
+  flex-wrap: nowrap; /* Mantém os itens em uma única linha */
+  overflow-x: auto; /* Habilita a rolagem horizontal */
+  scroll-snap-type: x mandatory; /* Faz o "snap" parar em cada item */
+  -webkit-overflow-scrolling: touch; /* Suaviza o scroll no mobile */
+  gap: 10px; /* Espaçamento entre os itens */
+  padding: 10px 0; /* Espaçamento vertical do container */
+}
+
+.projetos-slider .projeto {
+  flex: 0 0 100%; /* Cada item ocupa 100% da largura da tela */
+  scroll-snap-align: start; /* Alinha cada item no início da tela */
+  margin-right: 10px; /* Espaçamento entre os itens */
+}
+
+.projetos-slider .projeto:last-child {
+  margin-right: 0; /* Remove o espaço do último item */
+}
+/* } */
+
+.container-social {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.container-social img {
+  max-width: 100px;
+  width: 100%;
+  margin: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .container-profile img {
+    max-width: 360px;
+    width: 100%;
+  }
+
+  .style-list {
+    font-size: 25px !important;
+  }
+}
