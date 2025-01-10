@@ -64,9 +64,11 @@ nav ul li a {
 
 .projeto h3 {
   margin-top: 0;
-  font-size: 52px;
+  font-size: 45px;
   background: linear-gradient(to right, rgb(103, 103, 160), rgb(163, 79, 163));
   color: whitesmoke;
+  padding:30px 22px 32px 23px;
+  border-radius: 10px;
 
 }
 
@@ -110,6 +112,8 @@ body > div > img {
   -webkit-overflow-scrolling: touch; /* Suaviza o scroll no mobile */
   gap: 10px; /* Espaçamento entre os itens */
   padding: 10px 0; /* Espaçamento vertical do container */
+
+
 }
 
 .projetos-slider .projeto {
