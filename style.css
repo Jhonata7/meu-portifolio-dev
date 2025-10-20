@@ -149,4 +149,9 @@ body > div > img {
   .style-list {
     font-size: 25px !important;
   }
+
+  .text-apresentacao {
+  font-size: 22px;
+}
+  
 }
