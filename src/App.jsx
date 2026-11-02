@@ -359,7 +359,7 @@ function App() {
               <div className="hero-actions">
                 <a className="button button-primary" href="#projetos">{labels.viewProjects} <span>↓</span></a>
                 <a className="button button-ghost" href="#contato">{labels.getInTouch} <span>↗</span></a>
-                <a className="button button-ghost" href={lang === "pt" ? "/curriculo-pt.pdf" : "/resume-en.pdf"} download>{labels.downloadResume}</a>
+                <a className="button button-ghost" href={lang === "pt" ? "/curriculo-pt.pdf" : "/resume-en.pdf"} target="_blank" rel="noopener noreferrer">{labels.downloadResume}</a>
               </div>
               <div className="social-row">
                 {socials.map((social) => (
@@ -468,8 +468,8 @@ function App() {
                   <img src={social.icon} alt="" /> {social.name} ↗
                 </a>
               ))}
-              <a href="/resume-en.pdf" download>{labels.resumeEn}</a>
-              <a href="/curriculo-pt.pdf" download>{labels.resumePt}</a>
+              <a href="/resume-en.pdf" target="_blank" rel="noopener noreferrer">{labels.resumeEn}</a>
+              <a href="/curriculo-pt.pdf" target="_blank" rel="noopener noreferrer">{labels.resumePt}</a>
             </div>
           </div>
         </section>
