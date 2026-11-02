@@ -6,6 +6,13 @@ const LINKEDIN_URL = "https://www.linkedin.com/in/jhonatamilani/";
 const WHATSAPP_URL = "https://wa.me/5511976857601";
 const EMAIL_URL = "mailto:jhonatamilani77@gmail.com";
 
+const socials = [
+  { name: "GitHub", url: GITHUB_URL, icon: "/icons/github.svg" },
+  { name: "LinkedIn", url: LINKEDIN_URL, icon: "/icons/linkedin.svg" },
+  { name: "WhatsApp", url: WHATSAPP_URL, icon: "/icons/whatsapp.svg" },
+  { name: "Email", url: EMAIL_URL, icon: "/icons/gmail.svg" },
+];
+
 const projects = [
   {
     number: "01",
@@ -299,20 +306,20 @@ function App() {
     if (!track) return;
     const card = track.querySelector(".project-card");
     const width = card ? card.getBoundingClientRect().width : 420;
-    track.scrollBy({ left: direction * (width + 20), behavior: "smooth" });
+    track.scrollBy({ left: direction * Math.max(width - 14, 260), behavior: "smooth" });
   };
 
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <div className="app">
+    <div className="app notranslate" translate="no">
       <div className="noise" aria-hidden="true" />
 
       <header className="site-header">
         <div className="container nav-wrap">
-          <a className="brand" href="#topo" aria-label="Jhonata Milani" onClick={closeMenu}>
+          <a className="brand" href="#topo" aria-label="Jhonata Milani" onClick={closeMenu} translate="no">
             <span className="brand-mark">&lt;/&gt;</span>
-            <span>Jhonata<span className="brand-dot">.</span>dev</span>
+            <span>Jhonata <span className="brand-last">Milani</span></span>
           </a>
 
           <button
@@ -343,6 +350,7 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy reveal">
               <div className="eyebrow"><span className="status-dot" /> {labels.role} · {labels.location}</div>
+              <div className="hero-name" translate="no">Jhonata <span>Milani</span></div>
               <h1>
                 {labels.heroTitleA} <span className="accent-orange">{labels.heroTitleAccentA}</span><br />
                 {labels.heroTitleB} <span className="accent-green">{labels.heroTitleAccentB}</span>
@@ -352,6 +360,13 @@ function App() {
                 <a className="button button-primary" href="#projetos">{labels.viewProjects} <span>↓</span></a>
                 <a className="button button-ghost" href="#contato">{labels.getInTouch} <span>↗</span></a>
                 <a className="button button-ghost" href={lang === "pt" ? "/curriculo-pt.pdf" : "/resume-en.pdf"} download>{labels.downloadResume}</a>
+              </div>
+              <div className="social-row">
+                {socials.map((social) => (
+                  <a key={social.name} className="social-btn" href={social.url} target={social.url.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" aria-label={social.name} title={social.name} translate="no">
+                    <img src={social.icon} alt={social.name} />
+                  </a>
+                ))}
               </div>
               <div className="hero-meta">
                 <div><strong>05</strong><span>{labels.stat1}</span></div>
@@ -370,13 +385,13 @@ function App() {
                   <span className="scan-line" />
                 </div>
                 <div className="profile-card-footer">
-                  <div><strong>Jhonata Milani</strong><span>{labels.cardRole}</span></div>
+                  <div><strong className="profile-name" translate="no">Jhonata <span>Milani</span></strong><span>{labels.cardRole}</span></div>
                   <span className="profile-tag">BR</span>
                 </div>
               </div>
-              <div className="floating-chip chip-one">React</div>
-              <div className="floating-chip chip-two">Vite</div>
-              <div className="floating-chip chip-three">UI / UX</div>
+              <div className="floating-chip chip-one" translate="no">React</div>
+              <div className="floating-chip chip-two" translate="no">Vite</div>
+              <div className="floating-chip chip-three" translate="no">UI / UX</div>
             </div>
           </div>
         </section>
@@ -448,10 +463,11 @@ function App() {
               <p className="contact-text">{labels.contactText}</p>
             </div>
             <div className="contact-actions">
-              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
-              <a href={EMAIL_URL}>Email ↗</a>
+              {socials.map((social) => (
+                <a key={social.name} href={social.url} target={social.url.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" translate="no">
+                  <img src={social.icon} alt="" /> {social.name} ↗
+                </a>
+              ))}
               <a href="/resume-en.pdf" download>{labels.resumeEn}</a>
               <a href="/curriculo-pt.pdf" download>{labels.resumePt}</a>
             </div>
@@ -461,7 +477,7 @@ function App() {
 
       <footer className="site-footer">
         <div className="container footer-wrap">
-          <span>Jhonata Milani</span>
+          <span className="footer-name" translate="no">Jhonata <span>Milani</span></span>
           <span>{labels.footerNote}</span>
           <a href="#topo">{labels.backToTop}</a>
         </div>
