@@ -67,3 +67,12 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{disp
 .project-card:nth-child(3n){transform:rotate(-.8deg) translateY(9px)}
 .project-card:hover{transform:rotate(0deg) translateY(-10px) scale(1.018);z-index:8;box-shadow:0 46px 95px rgba(0,0,0,.6)}
 @media(max-width:760px){.project-card{margin-left:-16px}.project-card:first-child{margin-left:0}.projects-track{padding:34px 8px 30px}.hero-name{margin-top:19px}.chip-three{right:-2%}}
+/* — Downloads do currículo — */
+.downloads-section{background:radial-gradient(circle at 15% 15%,rgba(185,255,0,.07),transparent 26%),var(--bg)}
+.downloads-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:8px}
+.download-card{padding:28px;border:1px solid rgba(255,255,255,.11);border-radius:20px;background:#101316;display:grid;gap:9px;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.download-flag{width:fit-content;padding:7px 11px;border-radius:9px;background:rgba(185,255,0,.1);color:var(--green);font:700 11px/1 "Space Grotesk",sans-serif;letter-spacing:.12em}
+.download-card strong{font:700 23px/1.15 "Space Grotesk",sans-serif;letter-spacing:-.02em}
+.download-meta{color:#7e8983;font-size:13px}
+.download-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+@media(max-width:760px){.downloads-grid{grid-template-columns:1fr}}

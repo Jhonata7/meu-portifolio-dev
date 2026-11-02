@@ -107,7 +107,7 @@ const technologies = [
 
 const t = {
   en: {
-    nav: { about: "About", projects: "Projects", stack: "Stack", contact: "Contact ↗" },
+    nav: { about: "About", projects: "Projects", stack: "Stack", downloads: "Downloads", contact: "Contact ↗" },
     menuLabel: "Open menu",
     role: "Front-End Developer",
     location: "São Paulo, Brazil (UTC−3)",
@@ -143,7 +143,14 @@ const t = {
     stackLabel: "03 / STACK",
     stackTitle: "The stack behind the projects.",
     stackNote: "No percentage bars — this is the toolkit I actually ship client work with, project after project.",
-    contactLabel: "04 / CONTACT",
+    downloadsLabel: "04 / DOWNLOADS",
+    downloadsTitle: "Download my résumé.",
+    downloadsText: "One page, up to date — pick your language. Download the file or open it in a new tab.",
+    downloadsPtName: "Currículo — Português (BR)",
+    downloadsEnName: "Résumé — English",
+    downloadBtn: "Download ↓",
+    viewBtn: "View ↗",
+    contactLabel: "05 / CONTACT",
     contactTitleA: "Let's build something",
     contactTitleAccent: "useful.",
     contactText: "Open to full-time remote roles (Brazil & international) and freelance projects. Fastest reply: WhatsApp or email.",
@@ -153,7 +160,7 @@ const t = {
     backToTop: "Back to top ↑",
   },
   pt: {
-    nav: { about: "Sobre", projects: "Projetos", stack: "Tecnologias", contact: "Contato ↗" },
+    nav: { about: "Sobre", projects: "Projetos", stack: "Tecnologias", downloads: "Downloads", contact: "Contato ↗" },
     menuLabel: "Abrir menu",
     role: "Desenvolvedor Front-end",
     location: "São Paulo, Brasil (UTC−3)",
@@ -189,7 +196,14 @@ const t = {
     stackLabel: "03 / TECNOLOGIAS",
     stackTitle: "A stack por trás dos projetos.",
     stackNote: "Sem barrinha de porcentagem — estas são as ferramentas com que eu realmente entrego o trabalho dos clientes, projeto após projeto.",
-    contactLabel: "04 / CONTATO",
+    downloadsLabel: "04 / DOWNLOADS",
+    downloadsTitle: "Baixe meu currículo.",
+    downloadsText: "Uma página, atualizado — escolha o idioma. Baixe o arquivo ou abra em uma nova aba.",
+    downloadsPtName: "Currículo — Português (BR)",
+    downloadsEnName: "Résumé — English",
+    downloadBtn: "Baixar ↓",
+    viewBtn: "Visualizar ↗",
+    contactLabel: "05 / CONTATO",
     contactTitleA: "Vamos construir algo",
     contactTitleAccent: "útil.",
     contactText: "Aberto a vagas remotas em tempo integral (Brasil e exterior) e a projetos freelance. Resposta mais rápida: WhatsApp ou e-mail.",
@@ -268,7 +282,9 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState(() => {
     try {
-      return window.localStorage.getItem("portfolio-lang") || "en";
+      const saved = window.localStorage.getItem("portfolio-lang-v2");
+      if (saved === "pt" || saved === "en") return saved;
+      return (window.navigator.language || "en").toLowerCase().startsWith("pt") ? "pt" : "en";
     } catch {
       return "en";
     }
@@ -278,7 +294,7 @@ function App() {
 
   useEffect(() => {
     try {
-      window.localStorage.setItem("portfolio-lang", lang);
+      window.localStorage.setItem("portfolio-lang-v2", lang);
     } catch { /* ignore */ }
     document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
     document.title = lang === "pt"
@@ -312,12 +328,12 @@ function App() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <div className="app notranslate" translate="no">
+    <div className="app">
       <div className="noise" aria-hidden="true" />
 
       <header className="site-header">
         <div className="container nav-wrap">
-          <a className="brand" href="#topo" aria-label="Jhonata Milani" onClick={closeMenu} translate="no">
+          <a className="brand" href="#topo" aria-label="Jhonata Milani" onClick={closeMenu}>
             <span className="brand-mark">&lt;/&gt;</span>
             <span>Jhonata <span className="brand-last">Milani</span></span>
           </a>
@@ -336,6 +352,7 @@ function App() {
             <a href="#sobre" onClick={closeMenu}>{labels.nav.about}</a>
             <a href="#projetos" onClick={closeMenu}>{labels.nav.projects}</a>
             <a href="#tecnologias" onClick={closeMenu}>{labels.nav.stack}</a>
+            <a href="#downloads" onClick={closeMenu}>{labels.nav.downloads}</a>
             <a className="nav-contact" href="#contato" onClick={closeMenu}>{labels.nav.contact}</a>
             <div className="lang-toggle" role="group" aria-label="Language / Idioma">
               <button type="button" className={lang === "en" ? "is-active" : ""} onClick={() => setLang("en")}>EN</button>
@@ -350,7 +367,7 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy reveal">
               <div className="eyebrow"><span className="status-dot" /> {labels.role} · {labels.location}</div>
-              <div className="hero-name" translate="no">Jhonata <span>Milani</span></div>
+              <div className="hero-name">Jhonata <span>Milani</span></div>
               <h1>
                 {labels.heroTitleA} <span className="accent-orange">{labels.heroTitleAccentA}</span><br />
                 {labels.heroTitleB} <span className="accent-green">{labels.heroTitleAccentB}</span>
@@ -363,7 +380,7 @@ function App() {
               </div>
               <div className="social-row">
                 {socials.map((social) => (
-                  <a key={social.name} className="social-btn" href={social.url} target={social.url.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" aria-label={social.name} title={social.name} translate="no">
+                  <a key={social.name} className="social-btn" href={social.url} target={social.url.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" aria-label={social.name} title={social.name}>
                     <img src={social.icon} alt={social.name} />
                   </a>
                 ))}
@@ -385,13 +402,13 @@ function App() {
                   <span className="scan-line" />
                 </div>
                 <div className="profile-card-footer">
-                  <div><strong className="profile-name" translate="no">Jhonata <span>Milani</span></strong><span>{labels.cardRole}</span></div>
+                  <div><strong className="profile-name">Jhonata <span>Milani</span></strong><span>{labels.cardRole}</span></div>
                   <span className="profile-tag">BR</span>
                 </div>
               </div>
-              <div className="floating-chip chip-one" translate="no">React</div>
-              <div className="floating-chip chip-two" translate="no">Vite</div>
-              <div className="floating-chip chip-three" translate="no">UI / UX</div>
+              <div className="floating-chip chip-one">React</div>
+              <div className="floating-chip chip-two">Vite</div>
+              <div className="floating-chip chip-three">UI / UX</div>
             </div>
           </div>
         </section>
@@ -455,6 +472,38 @@ function App() {
           </div>
         </section>
 
+        <section id="downloads" className="section-shell downloads-section">
+          <div className="container">
+            <div className="section-heading reveal">
+              <div>
+                <div className="section-label">{labels.downloadsLabel}</div>
+                <h2>{labels.downloadsTitle}</h2>
+              </div>
+              <p className="section-note">{labels.downloadsText}</p>
+            </div>
+            <div className="downloads-grid">
+              <div className="download-card reveal">
+                <span className="download-flag">BR</span>
+                <strong>{labels.downloadsPtName}</strong>
+                <span className="download-meta">PDF · 1 página</span>
+                <div className="download-actions">
+                  <a className="button button-primary" href="/curriculo-pt.pdf" download>{labels.downloadBtn}</a>
+                  <a className="button button-ghost" href="/curriculo-pt.pdf" target="_blank" rel="noopener noreferrer">{labels.viewBtn}</a>
+                </div>
+              </div>
+              <div className="download-card reveal">
+                <span className="download-flag">EN</span>
+                <strong>{labels.downloadsEnName}</strong>
+                <span className="download-meta">PDF · 1 page</span>
+                <div className="download-actions">
+                  <a className="button button-primary" href="/resume-en.pdf" download>{labels.downloadBtn}</a>
+                  <a className="button button-ghost" href="/resume-en.pdf" target="_blank" rel="noopener noreferrer">{labels.viewBtn}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="contato" className="section-shell contact-section">
           <div className="container contact-card reveal">
             <div>
@@ -464,7 +513,7 @@ function App() {
             </div>
             <div className="contact-actions">
               {socials.map((social) => (
-                <a key={social.name} href={social.url} target={social.url.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" translate="no">
+                <a key={social.name} href={social.url} target={social.url.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
                   <img src={social.icon} alt="" /> {social.name} ↗
                 </a>
               ))}
@@ -477,7 +526,7 @@ function App() {
 
       <footer className="site-footer">
         <div className="container footer-wrap">
-          <span className="footer-name" translate="no">Jhonata <span>Milani</span></span>
+          <span className="footer-name">Jhonata <span>Milani</span></span>
           <span>{labels.footerNote}</span>
           <a href="#topo">{labels.backToTop}</a>
         </div>
